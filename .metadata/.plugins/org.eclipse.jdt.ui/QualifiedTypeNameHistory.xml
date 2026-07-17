@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="governo.bd_gov"/>
+    <fullyQualifiedTypeName name="javax.swing.text.MaskFormatter"/>
+    <fullyQualifiedTypeName name="estacionamentoe.funcoes.bd_estacionamento"/>
+    <fullyQualifiedTypeName name="Estacionamento.Funcoes.bd"/>
+    <fullyQualifiedTypeName name="lista_telefonica.funcoes.bd_lista"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="empresa_funcionario_codigo.bd"/>
+    <fullyQualifiedTypeName name="empresa_funcionario_telas.menu"/>
+    <fullyQualifiedTypeName name="codigo.bd"/>
+    <fullyQualifiedTypeName name="hortifruit_bd.bd"/>
+    <fullyQualifiedTypeName name="bd.bd"/>
+    <fullyQualifiedTypeName name="com.sun.org.apache.xerces.internal.impl.dv.xs.IntegerDV"/>
+    <fullyQualifiedTypeName name="codigo.controller"/>
+    <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+    <fullyQualifiedTypeName name="javax.swing.JTextField"/>
+    <fullyQualifiedTypeName name="java.net.http.HttpRequest.BodyPublisher"/>
+    <fullyQualifiedTypeName name="java.net.http.HttpRequest.BodyPublishers"/>
+    <fullyQualifiedTypeName name="java.net.http.HttpRequest"/>
+    <fullyQualifiedTypeName name="java.net.URI"/>
+    <fullyQualifiedTypeName name="java.net.http.HttpClient"/>
+    <fullyQualifiedTypeName name="java.net.http.HttpResponse"/>
+    <fullyQualifiedTypeName name="java.net.http.HttpResponse.BodyHandlers"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
+    <fullyQualifiedTypeName name="consumo_api.consumo"/>
+    <fullyQualifiedTypeName name="consumo.JSONObject"/>
+    <fullyQualifiedTypeName name="java.text.ParseException"/>
+    <fullyQualifiedTypeName name="consumo.controller"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="consumo.consumo"/>
+    <fullyQualifiedTypeName name="codigos.consumo"/>
+</qualifiedTypeNameHistroy>

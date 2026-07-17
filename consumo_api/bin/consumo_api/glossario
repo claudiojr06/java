@@ -1,0 +1,12 @@
+ReplaceALL = ele é utilizado para substituir 
+lenght = ele mostrara o comprimento dos caracteres
+toUpperCase = ele utiliza para aumentar todas as letras como maiuscula
+startsWith = função para o que for escrito começar com oque voce for colocar
+JSONObject = quebra o Array em partes e pega somente oque quer ao inves de pegar todo o array
+size ele pega a posição total de acordo com o tipo exemplo a posiçao do tamanho do array
+HttpRequest =vai ser a requisiçao que o client solicita
+URI =sera de onde vamos buscar  e o que vamos validar 
+header = o formato do arquivo
+POST = ele vai dar a resposta enquanto for um JSON
+build =  criar requisição
+charAt = pega uma caractere em uma posição especifica

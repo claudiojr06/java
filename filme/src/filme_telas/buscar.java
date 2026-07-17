@@ -1,0 +1,142 @@
+package filme_telas;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import consumo.consumo;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class buscar extends JFrame {
+	static JOptionPane mensagem = new JOptionPane();
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField filme;
+	private JTextField genero;
+	private JTextField lancamento;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					buscar frame = new buscar();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public buscar() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Buscar Filme");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(10, 11, 414, 28);
+		contentPane.add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("Filme:");
+		lblNewLabel_1.setBounds(18, 63, 89, 14);
+		contentPane.add(lblNewLabel_1);
+
+		filme = new JTextField();
+		filme.setBounds(117, 60, 259, 20);
+		contentPane.add(filme);
+		filme.setColumns(10);
+
+		JButton buscar = new JButton("buscar");//botao de buscar , percorri a api e peguei o obheto titulo para validar se o titulo digitado é igual a algum
+		//que esta cadastrado , se for igual vai retornar o lancamento e o genero do filme caso o filme não esteja 
+		//cadastrado ele retorna a mensagem de filme não encontrado ou campo em branco caso não escreva o nome do filme
+		buscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JSONArray array;
+				try {
+					array = consumo.pesquisa_filme();
+					int i =0;
+					for ( i = 0; i < array.size(); i++) {
+						JSONObject obj = (JSONObject) array.get(i);
+						if (obj.get("titulo").toString().equals(filme.getText().toString())) {
+							lancamento.setText((String) obj.get("lancamento").toString());
+							genero.setText((String) obj.get("genero").toString());
+							break;
+						}
+						
+						
+						
+						
+					}
+					if (i==array.size()) { 
+						filme.setText("");
+						lancamento.setText("");
+						genero.setText("");
+						
+						JOptionPane.showMessageDialog(null, "Filme não encontrado ou campo do nome em branco !");
+					
+					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+
+		});
+		buscar.setBounds(197, 91, 89, 23);
+		contentPane.add(buscar);
+
+		JLabel lblNewLabel_1_1 = new JLabel("Genero:");
+		lblNewLabel_1_1.setBounds(18, 128, 89, 14);
+		contentPane.add(lblNewLabel_1_1);
+
+		genero = new JTextField();
+		genero.setEditable(false);
+		genero.setColumns(10);
+		genero.setBounds(117, 125, 259, 20);
+		contentPane.add(genero);
+
+		JLabel anoo = new JLabel("Lançamento:");
+		anoo.setBounds(18, 175, 89, 14);
+		contentPane.add(anoo);
+
+		lancamento = new JTextField();
+		lancamento.setEditable(false);
+		lancamento.setColumns(10);
+		lancamento.setBounds(117, 172, 259, 20);
+		contentPane.add(lancamento);
+
+		JButton sair = new JButton("Sair");
+		sair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		sair.setBounds(180, 213, 89, 23);
+		contentPane.add(sair);
+
+	}
+
+}

@@ -1,0 +1,64 @@
+package codigos;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+public class consumo {
+	static String endereco = "http://192.168.0.225:3000";
+
+	public static void cadastrar_paciente(String nome, Integer idade, String cpf, String grauUrgencia)
+			throws Exception {
+		HttpClient client = HttpClient.newHttpClient();
+		String jsonInput = """
+				{
+				"nome": "%s",
+				"idade": "%s",
+				"cpf": "%s",
+				"grauUrgencia":"%s"
+				}
+				""".formatted(nome, idade, cpf, grauUrgencia);
+		HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endereco + "/pacientes"))
+				.header("Content-Type", "application/json").POST(HttpRequest.BodyPublishers.ofString(jsonInput))
+				.build();
+		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+		System.out.println("Status Code: " + response.statusCode());
+		System.out.println(response.body());
+
+	}
+
+	public static JSONArray buscar_paciente() throws Exception {
+		HttpClient client = HttpClient.newHttpClient();
+		HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endereco + "/pacientes")).GET().build();
+		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+		System.out.println("Status Code: " + response.statusCode());
+		JSONArray objeto;
+		JSONParser parser = new JSONParser();
+		objeto = (JSONArray) parser.parse(response.body());
+		return objeto;
+
+	}
+
+	public static void atualizar_atendimento(int id) throws Exception {
+		HttpClient client = HttpClient.newHttpClient();
+		String jsonInput = """
+				{"atendido": "true"}
+				""";
+		HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endereco + "/pacientes/" + id))
+				.header("Content-Type", "application/json").PUT(HttpRequest.BodyPublishers.ofString(jsonInput)).build();
+		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+		System.out.println("Status Code: " + response.statusCode());
+		System.out.println(response.body());
+
+	}
+
+	
+	
+	
+
+}

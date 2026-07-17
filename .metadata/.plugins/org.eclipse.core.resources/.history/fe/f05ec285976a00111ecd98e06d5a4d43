@@ -1,0 +1,71 @@
+package consumo_api;
+
+import javax.swing.JOptionPane;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+public class controller {
+	static String grupo2;
+	static JOptionPane mensagem = new JOptionPane();
+
+	public static boolean valida_grupo(String grupo) {
+		grupo2 = grupo.replaceAll(" ", "").toUpperCase();
+		if (!grupo2.contains("GRUPO")) {
+			mensagem.showMessageDialog(mensagem, "Grupo Invalido");
+			return false;
+		} else {
+			if (grupo2.length() != 6) {
+				mensagem.showMessageDialog(mensagem, "O formato do grupo está incorreto");
+				return false;
+			} else {
+				grupo2 = grupo.replaceAll("GRUPO", "GRUPO ").toUpperCase();
+				char ultimo = grupo2.charAt(grupo.length() - 1);
+				if ((int) ultimo < 65 || (int) ultimo > 76) {
+					mensagem.showMessageDialog(mensagem, "Grupo Invalido");
+					return false;
+				}
+
+				else {
+					System.out.println(grupo2);
+				}
+			}
+		}
+
+		return true;
+	}
+
+	public static void valida_selecao(String pais, String grupo, String bandeira) {
+		JSONArray array;
+		JSONObject jo;
+		boolean gru = valida_grupo(grupo);
+
+		System.out.println(grupo);
+		int gp = 0, i = 0;
+		try {
+			System.out.println("AS");
+			array = consumo.pesquisa_selecao();
+			for (i = 0; i < array.size(); i++) {
+				jo = (JSONObject) array.get(i);
+				if (jo.get("pais").toString().toUpperCase().equals(pais.toUpperCase())) {
+					mensagem.showMessageDialog(mensagem, "Pais já Cadastrado");
+					break;
+				}
+				if (jo.get("grupo").toString().toUpperCase().equals(grupo.toUpperCase()))
+					gp++;
+				if (jo.get("bandeira").toString().toUpperCase().equals(bandeira.toUpperCase())) {
+					mensagem.showMessageDialog(mensagem, "Bandeira já Cadastrado.");
+					break;
+				}
+
+			}
+			if (i == array.size() && gp < 4)
+				consumo.cadastrar_selecao(pais, grupo, bandeira);
+			else {
+				mensagem.showMessageDialog(mensagem, "Grupo ja Preenchido por completo");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

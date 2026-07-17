@@ -1,0 +1,64 @@
+package estacionamentoe.Telas;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.Font;
+
+public class menu extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					menu frame = new menu();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public menu() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton cadastrar = new JButton("CADASTRAR VEICULO");
+		cadastrar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cadastrar.setBounds(133, 57, 144, 23);
+		contentPane.add(cadastrar);
+		
+		JButton entrada = new JButton("ENTRADA");
+		entrada.setFont(new Font("Tahoma", Font.BOLD, 11));
+		entrada.setBounds(133, 101, 144, 23);
+		contentPane.add(entrada);
+		
+		JButton saida = new JButton("SAIDA");
+		saida.setFont(new Font("Tahoma", Font.BOLD, 11));
+		saida.setBounds(133, 151, 144, 23);
+		contentPane.add(saida);
+		
+		JButton relatorio = new JButton("RELATORIO");
+		relatorio.setFont(new Font("Tahoma", Font.BOLD, 11));
+		relatorio.setBounds(133, 202, 144, 23);
+		contentPane.add(relatorio);
+
+	}
+}

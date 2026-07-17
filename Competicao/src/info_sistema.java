@@ -1,0 +1,100 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+
+public class info_sistema extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					info_sistema frame = new info_sistema();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public info_sistema() {
+		getContentPane().setBackground(new Color(0, 0, 160));
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Info");
+		lblNewLabel.setForeground(new Color(255, 128, 64));
+		lblNewLabel.setBackground(new Color(0, 0, 160));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 19));
+		lblNewLabel.setBounds(10, 11, 414, 25);
+		getContentPane().add(lblNewLabel);
+		
+		JTextPane txtpnHgefddygydyyhsddhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh = new JTextPane();
+		txtpnHgefddygydyyhsddhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh.setText("Na tela de inicial temos as opcoes , para que possamos cadastrar, buscar cursos ou ver as informacoes do sistema.");
+		txtpnHgefddygydyyhsddhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh.setBounds(10, 47, 414, 34);
+		getContentPane().add(txtpnHgefddygydyyhsddhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh);
+		
+		JTextPane txtpnNaSegundaTela = new JTextPane();
+		txtpnNaSegundaTela.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtpnNaSegundaTela.setText("Na segunda tela podemos cadastrar as informacoes dos alunos como: Nome, CPF, Telefone, Endereco, E-mail.");
+		txtpnNaSegundaTela.setBounds(10, 92, 414, 34);
+		getContentPane().add(txtpnNaSegundaTela);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(38, 158, 0, 20);
+		getContentPane().add(textPane);
+		
+		JButton btnNewButton = new JButton("Sair");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		btnNewButton.setBounds(171, 238, 89, 23);
+		getContentPane().add(btnNewButton);
+		
+		JTextPane txtpnNaTerceiraTela = new JTextPane();
+		txtpnNaTerceiraTela.setText("Na terceira tela podemos buscar os cursos disponiveis e as informacoes dele como: Curso, Carga Horaria, Vagas e o Instrutor ");
+		txtpnNaTerceiraTela.setBounds(10, 137, 414, 41);
+		getContentPane().add(txtpnNaTerceiraTela);
+		
+		JTextPane txtpnNaUltimaTela = new JTextPane();
+		txtpnNaUltimaTela.setText("Na ultima tela temos todas as informacoes do sistema.");
+		txtpnNaUltimaTela.setBounds(10, 189, 414, 38);
+		getContentPane().add(txtpnNaUltimaTela);
+		
+		JLabel lblNewLabel_1 = new JLabel("Senac:");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setBounds(305, 243, 46, 14);
+		getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("(32) 3339-3110");
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setBounds(344, 243, 80, 14);
+		getContentPane().add(lblNewLabel_2);
+
+	}
+}

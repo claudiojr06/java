@@ -1,0 +1,90 @@
+package estacionamentoe.Telas;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import estacionamentoe.funcoes.bd_estacionamento;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
+
+public class cadastrar_veiculo extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField modelo;
+	private JTextField placa;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					cadastrar_veiculo frame = new cadastrar_veiculo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public cadastrar_veiculo() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton cadastrar = new JButton("CADASTRAR");
+		cadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					bd_estacionamento.insert_veiculo(placa.getText(),modelo.getText());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		cadastrar.setBounds(88, 227, 106, 23);
+		contentPane.add(cadastrar);
+		
+		JButton btnSair = new JButton("SAIR");
+		btnSair.setBounds(261, 227, 89, 23);
+		contentPane.add(btnSair);
+		
+		modelo = new JTextField();
+		modelo.setColumns(10);
+		modelo.setBounds(88, 61, 262, 20);
+		contentPane.add(modelo);
+		
+		JLabel lblNewLabel = new JLabel("Modelo");
+		lblNewLabel.setBounds(10, 64, 46, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblPlaca = new JLabel("Placa:");
+		lblPlaca.setBounds(10, 21, 46, 14);
+		contentPane.add(lblPlaca);
+		
+		placa = new JTextField();
+		placa.setBounds(88, 18, 262, 20);
+		contentPane.add(placa);
+		placa.setColumns(10);
+
+	}
+}

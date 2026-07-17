@@ -1,0 +1,100 @@
+package codigos;
+
+import javax.swing.JOptionPane;
+
+public class controller {
+	static String cadastro;
+	static JOptionPane mensagem = new JOptionPane();
+
+	public static boolean validaNome(String nome) {
+
+		nome = nome.replaceAll("^\\s+|\\s+$", "");
+
+		nome = nome.replaceAll("\\s+", " ");
+
+		if (nome.equals("")) {
+			JOptionPane.showMessageDialog(mensagem, "Informe o nome do paciente.");
+			return false;
+		}
+		if (!nome.matches("[A-Za-zÀ-ÿ ]+")) {
+			JOptionPane.showMessageDialog(mensagem, "O nome deve conter apenas letras.");
+			return false;
+		}
+
+		return true;
+	}
+
+	public static boolean validaidade(String idade) {
+		
+		idade = idade.replaceAll("^\\s+|\\s+$", "");
+
+		if (idade.equals("")) {
+		    JOptionPane.showMessageDialog(mensagem, "Informe a idade do paciente.");
+		    return false;
+		}
+		int idade2 = Integer.parseInt(idade);
+		if (idade2 < 0 ||
+
+				idade2 > 123) {
+			JOptionPane.showMessageDialog(mensagem, "Idade não permitida");
+
+			return false;
+
+		}
+
+		return true;
+		}
+
+	public static boolean validacpf(String cpf) {
+
+		cpf = cpf.replaceAll("^\\s+|\\s+$", "");
+
+		if (cpf.equals("")) {
+			JOptionPane.showMessageDialog(mensagem, "Informe o CPF.");
+			return false;
+		}
+
+		cpf = cpf.replaceAll(".", "");
+		cpf = cpf.replaceAll("-", "");
+
+		
+		
+		if (cpf.length() != 11) {
+			JOptionPane.showMessageDialog(mensagem, "O CPF deve possuir 11 números.");
+			
+			return false;
+		}
+		
+		return true;
+	}
+	public static boolean validaGrau(String grau) {
+
+	    grau = grau.replaceAll("^\\s+|\\s+$", "");
+	    grau = grau.replaceAll("\\s+", " ");
+	    grau = grau.toUpperCase();
+
+	    if (grau.equals("")) {
+	        JOptionPane.showMessageDialog(mensagem,
+	                "Informe o grau de urgência.");
+	        return false;
+	    }
+
+	    if (!grau.equals("VERDE")
+	            && !grau.equals("AMARELO")
+	            && !grau.equals("VERMELHO")) {
+
+	        JOptionPane.showMessageDialog(mensagem,
+	                "O grau de urgência deve ser Verde, Amarelo ou Vermelho.");
+	        return false;
+	    }
+
+	    return true;
+	}
+	
+	
+
+//        JOptionPane.showMessageDialog(null,
+//                "A idade deve conter apenas números.");
+//        
+
+}

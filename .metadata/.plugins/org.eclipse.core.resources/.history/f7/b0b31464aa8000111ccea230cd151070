@@ -1,0 +1,155 @@
+package codigos;
+
+import javax.swing.JOptionPane;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+public class controller {
+	static String cadastro;
+	static JOptionPane mensagem = new JOptionPane();
+
+	public static boolean validaNome(String nome) {
+
+		nome = nome.trim();
+
+		nome = nome.replaceAll("\\s+", " ");
+
+		if (nome.equals("")) {
+			JOptionPane.showMessageDialog(mensagem, "Informe o nome do paciente.");
+			return false;
+		}
+		if (!nome.matches("[A-Za-zÀ-ÿ ]+")) {
+			JOptionPane.showMessageDialog(mensagem, "O nome deve conter apenas letras.");
+			return false;
+		}
+
+		return true;
+	}
+
+	public static boolean validaidade(String idade) {
+
+		idade = idade.trim();
+
+		if (idade.equals("")) {
+			JOptionPane.showMessageDialog(mensagem, "Informe a idade do paciente.");
+			return false;
+		}
+		if (!idade.matches("[0-9]+")) {
+			JOptionPane.showMessageDialog(mensagem, "A idade so Permite Numeros!");
+			return false;
+		}
+		
+		int idade2 = Integer.parseInt(idade);
+		if (idade2 < 0 ||
+
+				idade2 > 123) {
+			JOptionPane.showMessageDialog(mensagem, "Idade não permitida");
+
+			return false;
+
+		}
+
+		return true;
+	}
+	public static boolean cpfExiste(String cpf) throws Exception {
+
+		JSONArray pacientes = consumo.buscar_paciente();
+
+		for (int i = 0; i < pacientes.size(); i++) {
+
+			JSONObject objeto = (JSONObject) pacientes.get(i);
+
+			if (objeto.get("cpf").toString().equals(cpf)) {
+				 JOptionPane.showMessageDialog(null, "CPF já cadastrado.");
+				return true;
+				
+			}
+		}
+
+		return false;
+	}
+
+
+	public static boolean validacpf(String cpf) {
+
+		cpf = cpf.replaceAll("^\\s+|\\s+$", "");
+
+		if (cpf.equals("")) {
+			JOptionPane.showMessageDialog(mensagem, "Informe o CPF.");
+			return false;
+		}
+
+		cpf = cpf.replaceAll("\\.", "");
+		cpf = cpf.replaceAll("-", "");
+
+		if (cpf.length() != 11) {
+			JOptionPane.showMessageDialog(mensagem, "O CPF deve possuir 11 números.");
+
+			return false;
+		}
+
+		return true;
+	}
+
+	public static boolean validaGrau(String grau) {
+
+		grau = grau.replaceAll("^\\s+|\\s+$", "");
+		grau = grau.replaceAll("\\s+", " ");
+		grau = grau.toUpperCase();
+
+		if (grau.equals("")) {
+			JOptionPane.showMessageDialog(mensagem, "Informe o grau de urgência.");
+			return false;
+		}
+
+		if (!grau.equals("VERDE") && !grau.equals("AMARELO") && !grau.equals("VERMELHO")) {
+
+			JOptionPane.showMessageDialog(mensagem, "O grau de urgência deve ser Verde, Amarelo ou Vermelho.");
+			return false;
+		}
+
+		return true;
+	}
+
+	
+	public static boolean prioridadeMaior(JSONObject paciente1, JSONObject paciente2) {
+
+	    int prioridade1 = prioridade(paciente1.get("grauUrgencia").toString());
+	    int prioridade2 = prioridade(paciente2.get("grauUrgencia").toString());
+
+	    if (prioridade1 != prioridade2) {
+	        return prioridade1 > prioridade2;
+	    }
+
+	    int idade1 = Integer.parseInt(paciente1.get("idade").toString());
+	    int idade2 = Integer.parseInt(paciente2.get("idade").toString());
+
+	    boolean idoso1 = idade1 >= 60;
+	    boolean idoso2 = idade2 >= 60;
+
+	    if (idoso1 != idoso2) {
+	        return idoso1;
+	    }
+
+	    String hora1 = paciente1.get("horarioChegada").toString();
+	    String hora2 = paciente2.get("horarioChegada").toString();
+
+	    return hora1.compareTo(hora2) < 0;
+	}
+
+	private static int prioridade(String grau) {
+
+	    grau = grau.trim().toUpperCase();
+
+	    switch (grau) {
+	        case "VERMELHO":
+	            return 3;
+	        case "AMARELO":
+	            return 2;
+	        case "VERDE":
+	            return 1;
+	        default:
+	            return 0;
+	    }
+	}}
